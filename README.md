@@ -4,7 +4,7 @@ This proxy tool allows the user to scrape the proxy type of their choice.
 
 ## Installation
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install required packages.
 
 ```bash
 pip install requests, colorama
