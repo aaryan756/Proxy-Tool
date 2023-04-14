@@ -2,7 +2,6 @@ import requests, os
 from colorama import Fore, Back, Style
 from time import sleep
 
-
 proxies = []
 
 
