@@ -9,40 +9,40 @@ proxies = []
 def socks4():
     url = "https://api.proxyscrape.com/v2/?request=getproxies&protocol=socks4&timeout=10000&country=all"
     req = requests.get(url)
-    open("koskhol.txt", "a").write(req.text)
-    proxy_temp = open("koskhol.txt", "r")
+    open("temp_file.txt", "a").write(req.text)
+    proxy_temp = open("temp_file.txt", "r")
     for proxy in proxy_temp:
         line = proxy.strip("\n")
         if line != "":
             proxies.append(proxy.strip("\n"))
     proxy_temp.close()
-    os.remove("koskhol.txt")
+    os.remove("temp_file.txt")
 
 
 def socks5():
     url = "https://api.proxyscrape.com/v2/?request=getproxies&protocol=socks5&timeout=10000&country=all"
     req = requests.get(url)
-    open("koskhol.txt", "a").write(req.text)
-    proxy_temp = open("koskhol.txt", "r")
+    open("temp_file.txt", "a").write(req.text)
+    proxy_temp = open("temp_file.txt", "r")
     for proxy in proxy_temp:
         line = proxy.strip("\n")
         if line != "":
             proxies.append(proxy.strip("\n"))
     proxy_temp.close()
-    os.remove("koskhol.txt")
+    os.remove("temp_file.txt")
 
 
 def http():
     url = "https://api.proxyscrape.com/v2/?request=getproxies&protocol=http&timeout=10000&country=all"
     req = requests.get(url)
-    open("koskhol.txt", "a").write(req.text)
-    proxy_temp = open("koskhol.txt", "r")
+    open("temp_file.txt", "a").write(req.text)
+    proxy_temp = open("temp_file.txt", "r")
     for proxy in proxy_temp:
         line = proxy.strip("\n")
         if line != "":
             proxies.append(proxy.strip("\n"))
     proxy_temp.close()
-    os.remove("koskhol.txt")
+    os.remove("temp_file.txt")
 
 
 def main():
@@ -100,6 +100,14 @@ def main():
                 socks4()
                 for count, proxy in enumerate(proxies):
                     if count < int(proxy_amount):
+                        if len(proxy) <= 3:
+                            print(
+                                Fore.RED
+                                + "Only "
+                                + count
+                                + " proxies were found! Writing remaining to file."
+                            )
+                            break
                         kiri.write(proxy + "\n")
                     else:
                         break
@@ -109,6 +117,14 @@ def main():
                 socks5()
                 for count, proxy in enumerate(proxies):
                     if count < int(proxy_amount):
+                        if len(proxy) <= 3:
+                            print(
+                                Fore.RED
+                                + "Only "
+                                + count
+                                + " proxies were found! Writing remaining to file."
+                            )
+                            break
                         kiri.write(proxy + "\n")
                     else:
                         break
@@ -118,12 +134,20 @@ def main():
                 http()
                 for count, proxy in enumerate(proxies):
                     if count < int(proxy_amount):
+                        if len(proxy) <= 3:
+                            print(
+                                Fore.RED
+                                + "Only "
+                                + count
+                                + " proxies were found! Writing remaining to file."
+                            )
+                            break
                         kiri.write(proxy + "\n")
                     else:
                         break
                 input_valid = True
 
-    print("Done")
+    print("Completed")
 
 
 main()
